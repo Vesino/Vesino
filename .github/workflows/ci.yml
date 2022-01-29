@@ -2,13 +2,11 @@ name: Continuous Integration
 
 on:
   push:
-    branches-ignore:
-      - master
-      - dev
+    branches:
+      - main
   pull_request:
     branches:
       - main
-      - dev
 
 jobs:
   changes:
@@ -22,11 +20,10 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          base: 'dev'
+          base: 'main'
           filters: |
             backend:
               - './**'
-
 
   backend:
     needs: changes
